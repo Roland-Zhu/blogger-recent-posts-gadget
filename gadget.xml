@@ -1,122 +1,95 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
 
-<ModulePrefs
-title="recent posts"
-author="aladdin"
-description="recent posts"
-author_email="zss.panda@gmail.com"
-thumbnail=""
-screenshot=""
-height="200">
-  <Require feature="dynamic-height"/>
-  <Require feature="opensocial-0.7"/>
-  <Require feature="google.blog"/>
-  <Require feature="skins"/>
-  <Require feature="views"/>
+	<ModulePrefs title="recent posts" author="aladdin"
+		description="recent posts" author_email="zss.panda@gmail.com"
+		thumbnail="" screenshot="" height="200">
+		<Require feature="dynamic-height" />
+		<Require feature="opensocial-0.7" />
+		<Require feature="google.blog" />
+		<Require feature="skins" />
+		<Require feature="views" />
 
-</ModulePrefs>
-<UserPref
-name="a"
-display_name="Number of Posts to Display"
-required="true"
-default_value="5" />
+	</ModulePrefs>
+	<UserPref name="a" display_name="Number of Posts to Display"
+		required="true" default_value="5" />
 
-<UserPref
-name="b"
-display_name="Maximum Length of the Post Title"
-required="true"
-default_value="60" />
+	<UserPref name="b" display_name="Maximum Length of the Post Title"
+		required="true" default_value="60" />
 
-<UserPref name="c"
-              display_name="Snippet Style"
-              datatype="enum"
-              default_value="0">
-        <EnumValue value="0" display_value="No Snippet"/>
-        <EnumValue value="1" display_value="Summary Only"/>
-</UserPref>
- 
- <UserPref
-name="e"
-display_name="Summary Length"
-required="true"
-default_value="150" />
+	<UserPref name="c" display_name="Snippet Style" datatype="enum"
+		default_value="1">
+		<EnumValue value="0" display_value="No Snippet" />
+		<EnumValue value="1" display_value="Summary Only" />
+	</UserPref>
+
+	<UserPref name="e" display_name="Summary Length" required="true"
+		default_value="150" />
 
 
 
-<UserPref name="f"
-              display_name="Post Meta Style"
-              datatype="enum"
-              default_value="5">
-        <EnumValue value="0" display_value="None"/>
-        <EnumValue value="1" display_value="07-09-2010 | 5 Comments | More >>"/>
-        <EnumValue value="2" display_value="07-09-2010 | 5 Comments"/>
-        <EnumValue value="3" display_value="5 Comments | More >>"/>
-        <EnumValue value="4" display_value="07-09-2010 | More >>"/>
-        <EnumValue value="5" display_value="07-09-2010"/>
-        <EnumValue value="6" display_value="5 Comments"/>
+	<UserPref name="f" display_name="Post Meta Style" datatype="enum"
+		default_value="5">
+		<EnumValue value="0" display_value="None" />
+		<EnumValue value="1" display_value="07-09-2010 | 5 Comments | More >>" />
+		<EnumValue value="2" display_value="07-09-2010 | 5 Comments" />
+		<EnumValue value="3" display_value="5 Comments | More >>" />
+		<EnumValue value="4" display_value="07-09-2010 | More >>" />
+		<EnumValue value="5" display_value="07-09-2010" />
+		<EnumValue value="6" display_value="5 Comments" />
 
-        <EnumValue value="7" display_value=" More >>"/>
-</UserPref>
+		<EnumValue value="7" display_value=" More >>" />
+	</UserPref>
 
 
- <UserPref
-name="o"
-display_name="Read More Text"
-required="true"
-default_value="" />
+	<UserPref name="o" display_name="Read More Text" required="true"
+		default_value="" />
 
 
 
-<UserPref name="g"
-              display_name="Font"
-              datatype="enum"
-              default_value="0">
-        <EnumValue value="0" display_value="Inherit from Blog"/>
-        <EnumValue value="1" display_value="Arial"/>
-        <EnumValue value="2" display_value="Courier"/>
+	<UserPref name="g" display_name="Font" datatype="enum"
+		default_value="7">
+		<EnumValue value="0" display_value="Inherit from Blog" />
+		<EnumValue value="1" display_value="Arial" />
+		<EnumValue value="2" display_value="Courier" />
 
-        <EnumValue value="3" display_value="Georgia"/>
-        <EnumValue value="4" display_value="Imapact"/>
-        <EnumValue value="5" display_value="Times New Roman"/>
-        <EnumValue value="6" display_value="Trebuchet"/>
-        <EnumValue value="7" display_value="Verdana"/>
-</UserPref>
+		<EnumValue value="3" display_value="Georgia" />
+		<EnumValue value="4" display_value="Imapact" />
+		<EnumValue value="5" display_value="Times New Roman" />
+		<EnumValue value="6" display_value="Trebuchet" />
+		<EnumValue value="7" display_value="Verdana" />
+	</UserPref>
 
 
-<UserPref name="h"
-              display_name="Font Size"
-              datatype="enum"
-              default_value="16">
-        <EnumValue value="0" display_value="Inherit from Blog"/>
-        <EnumValue value="10" display_value="10px"/>
+	<UserPref name="h" display_name="Font Size" datatype="enum"
+		default_value="16">
+		<EnumValue value="0" display_value="Inherit from Blog" />
+		<EnumValue value="10" display_value="10px" />
+		<EnumValue value="11" display_value="11px" />
+		<EnumValue value="12" display_value="12px" />
+		<EnumValue value="13" display_value="13px" />
+		<EnumValue value="14" display_value="14px" />
+		<EnumValue value="15" display_value="15px" />
+		<EnumValue value="16" display_value="16px" />
+		<EnumValue value="17" display_value="17px" />
+		<EnumValue value="18" display_value="18px" />
+		<EnumValue value="19" display_value="19px" />
+		<EnumValue value="20" display_value="20px" />
+	</UserPref>
 
-        <EnumValue value="11" display_value="11px"/>
-        <EnumValue value="12" display_value="12px"/>
-        <EnumValue value="13" display_value="13px"/>
-        <EnumValue value="14" display_value="14px"/>
-        <EnumValue value="15" display_value="15px"/>
-        <EnumValue value="16" display_value="16px"/>
-        <EnumValue value="17" display_value="17px"/>
-        <EnumValue value="18" display_value="18px"/>
-        <EnumValue value="19" display_value="19px"/>
-
-        <EnumValue value="20" display_value="20px"/>
-</UserPref>
-
-<Content type="html">
+	<Content type="html">
 
  <![CDATA[
 <html>
 <head>
-    <title>Recent Posts with Thumbnails</title>
+    <title>Recent Posts</title>
 
 <script type="text/javascript">
 var readMore,numberOfPosts,showThumbs=false,showPostDate=false,showSummary=false,summaryLength,showCommentCount=false,showReadMore=false,extBlog,extURL;
 var feedUrl="",font,linkColor,showNoImage=false,fontSize,titleLength,mediaThumbsOnly=false,imgDim,imgFloat,showBorder=false,borderColor,fontFace,imgCSS,poweredBy=false,underline=true;
 </script>
 
-<script type="text/javascript" src="https://raw.github.com/Roland-Zhu/blogger-recent-posts-gadget/master/function.js"></script>
+<script type="text/javascript" src="https://recent-posts-gadget.googlecode.com/svn/function.js"></script>
 
 </head>
 <body>
@@ -256,5 +229,5 @@ var viewFeeds = new google.Blog(initialize, window.name);
 </body>
 </html>
                 ]]>
-    </Content>
+	</Content>
 </Module>
