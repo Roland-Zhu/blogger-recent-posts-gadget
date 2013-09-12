@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+
+<ModulePrefs
+title="recent posts"
+author="aladdin"
+description="recent posts"
+author_email="zss.panda@gmail.com"
+thumbnail=""
+screenshot=""
+height="200">
+  <Require feature="dynamic-height"/>
+  <Require feature="opensocial-0.7"/>
+  <Require feature="google.blog"/>
+  <Require feature="skins"/>
+  <Require feature="views"/>
+
+</ModulePrefs>
+<UserPref
+name="a"
+display_name="Number of Posts to Display"
+required="true"
+default_value="5" />
+
+<UserPref
+name="b"
+display_name="Maximum Length of the Post Title"
+required="true"
+default_value="60" />
+
+<UserPref name="c"
+              display_name="Snippet Style"
+              datatype="enum"
+              default_value="0">
+        <EnumValue value="0" display_value="No Snippet"/>
+        <EnumValue value="1" display_value="Summary Only"/>
+</UserPref>
+ 
+ <UserPref
+name="e"
+display_name="Summary Length"
+required="true"
+default_value="150" />
+
+
+
+<UserPref name="f"
+              display_name="Post Meta Style"
+              datatype="enum"
+              default_value="5">
+        <EnumValue value="0" display_value="None"/>
+        <EnumValue value="1" display_value="07-09-2010 | 5 Comments | More >>"/>
+        <EnumValue value="2" display_value="07-09-2010 | 5 Comments"/>
+        <EnumValue value="3" display_value="5 Comments | More >>"/>
+        <EnumValue value="4" display_value="07-09-2010 | More >>"/>
+        <EnumValue value="5" display_value="07-09-2010"/>
+        <EnumValue value="6" display_value="5 Comments"/>
+
+        <EnumValue value="7" display_value=" More >>"/>
+</UserPref>
+
+
+ <UserPref
+name="o"
+display_name="Read More Text"
+required="true"
+default_value="" />
+
+
+
+<UserPref name="g"
+              display_name="Font"
+              datatype="enum"
+              default_value="0">
+        <EnumValue value="0" display_value="Inherit from Blog"/>
+        <EnumValue value="1" display_value="Arial"/>
+        <EnumValue value="2" display_value="Courier"/>
+
+        <EnumValue value="3" display_value="Georgia"/>
+        <EnumValue value="4" display_value="Imapact"/>
+        <EnumValue value="5" display_value="Times New Roman"/>
+        <EnumValue value="6" display_value="Trebuchet"/>
+        <EnumValue value="7" display_value="Verdana"/>
+</UserPref>
+
+
+<UserPref name="h"
+              display_name="Font Size"
+              datatype="enum"
+              default_value="16">
+        <EnumValue value="0" display_value="Inherit from Blog"/>
+        <EnumValue value="10" display_value="10px"/>
+
+        <EnumValue value="11" display_value="11px"/>
+        <EnumValue value="12" display_value="12px"/>
+        <EnumValue value="13" display_value="13px"/>
+        <EnumValue value="14" display_value="14px"/>
+        <EnumValue value="15" display_value="15px"/>
+        <EnumValue value="16" display_value="16px"/>
+        <EnumValue value="17" display_value="17px"/>
+        <EnumValue value="18" display_value="18px"/>
+        <EnumValue value="19" display_value="19px"/>
+
+        <EnumValue value="20" display_value="20px"/>
+</UserPref>
+
+<Content type="html">
+
+ <![CDATA[
+<html>
+<head>
+    <title>Recent Posts with Thumbnails</title>
+
+<script type="text/javascript">
+var readMore,numberOfPosts,showThumbs=false,showPostDate=false,showSummary=false,summaryLength,showCommentCount=false,showReadMore=false,extBlog,extURL;
+var feedUrl="",font,linkColor,showNoImage=false,fontSize,titleLength,mediaThumbsOnly=false,imgDim,imgFloat,showBorder=false,borderColor,fontFace,imgCSS,poweredBy=false,underline=true;
+</script>
+
+<script type="text/javascript" src="https://recent-posts-gadget.googlecode.com/svn/function.js"></script>
+
+</head>
+<body>
+<span id="dummy" style="display:none;"></span>
+<div id="recent" style="border:1px solid #0000FF;padding:7px;"></div><small><div id="poweredBy" style="display:none;"></div></small>
+
+
+
+
+<script type="text/javascript">
+//<!--
+function isInConfigPage() {
+        var re = new RegExp("^https?://(www.)?blogger.com");
+        return re.test(document.referrer);
+    }
+
+    if (isInConfigPage()) {
+       document.getElementById('instr').style.display="block";
+    }
+
+
+function initialize() {
+//Grab the User Preferences
+var viewParams = gadgets.views.getParams();
+numberOfPosts = parseInt(viewParams["a"]);
+if(isNaN(numberOfPosts)) numberOfPosts =1;
+summaryLength = parseInt(viewParams["e"]);
+titleLength = parseInt(viewParams["b"]);
+if(viewParams["h"]=="0")fontSize=""; else fontSize=viewParams["h"]+'px';
+poweredBy = (viewParams["l"]=="0"?false:false);
+if(viewParams["g"]=="0")fontFace="";
+else if(viewParams["g"]=="1")fontFace="Arial";
+else if(viewParams["g"]=="2")fontFace="Courier";
+else if(viewParams["g"]=="3")fontFace="Georgia";
+else if(viewParams["g"]=="4")fontFace="Impact";
+else if(viewParams["g"]=="5")fontFace="Times New Roman";
+else if(viewParams["g"]=="6")fontFace="Trebuchet";
+else if(viewParams["g"]=="7")fontFace="Verdana";
+postMeta = viewParams["f"];
+if(postMeta=="1") {showPostDate=true;showCommentCount=true;showReadMore=true;}
+else if(postMeta=="2") {showPostDate=true;showCommentCount=true;}
+else if(postMeta=="3") {showCommentCount=true;showReadMore=true;}
+else if(postMeta=="4") {showPostDate=true;showReadMore=true;}
+else if(postMeta=="5") {showPostDate=true;}
+else if(postMeta=="6") {showCommentCount=true;}
+else if(postMeta=="7") {showReadMore=true;}
+imgDim = viewParams["k"];
+if(imgDim=="0") imgDim="50px";
+else if(imgDim=="0") imgDim="50";
+else if(imgDim=="1") imgDim="55";
+else if(imgDim=="2") imgDim="60";
+else if(imgDim=="3") imgDim="65";
+else if(imgDim=="4") imgDim="70";
+else if(imgDim=="5") imgDim="75";
+else if(imgDim=="6") imgDim="80";
+else if(imgDim=="7") imgDim="85";
+else if(imgDim=="8") imgDim="90";
+else if(imgDim=="9") imgDim="95";
+else if(imgDim=="10") imgDim="100";
+readMore = viewParams["o"];
+if(readMore==null||readMore=="") readMore ="More";
+snippetStyle = viewParams["c"];
+if(snippetStyle=="1") {showSummary=true;}
+else if(snippetStyle=="2") {showSummary=true;showThumbs=true;}
+else if(snippetStyle=="3") {showThumbs=true;}
+
+if(viewParams["d"]=="0") {mediaThumbsOnly=true;}
+else if(viewParams["d"]=="2") {mediaThumbsOnly=true;showNoImage=true;}
+else if(viewParams["d"]=="3") {showNoImage=true;}
+
+borderColor = viewParams["j"];
+
+if(viewParams["i"]=="0"||viewParams["i"]=="1") imgFloat="left"; else imgFloat="right";
+if(viewParams["i"]=="0"||viewParams["i"]=="2") underline=false;
+if(borderColor!="") showBorder=true;
+
+
+extBlog = viewParams["p"];
+
+extURL = viewParams["q"];
+//Set the Background
+document.body.style.backgroundColor = gadgets.skins.getProperty('CONTENT_BG_COLOR');
+if(viewParams["blogurl"]) {document.body.style.color=gadgets.skins.getProperty('CONTENT_TEXT_COLOR');document.getElementById('recent').innerHTML="<small>The gadget has been updated. Please Reconfigure the Settings. Sorry for the inconvenience.</small>";exit();}
+
+document.getElementById('dummy').style.color= viewParams["n"];
+if(document.getElementById('dummy').style.color=="") linkColor = gadgets.skins.getProperty('CONTENT_LINK_COLOR'); else linkColor=viewParams["n"];
+if(viewParams["m"]!="") document.body.style.color=viewParams["m"];
+if(document.body.style.color=="") document.body.style.color=gadgets.skins.getProperty('CONTENT_TEXT_COLOR');
+if(fontFace=="") font=gadgets.skins.getProperty('FONT_FACE');
+document.getElementById('dummy').style.color= "";
+document.getElementById('dummy').style.color= borderColor;
+if(document.getElementById('dummy').style.color=="") showBorder=false;
+//Pass the preferences and settings to the randomizer
+//feedUrl= viewFeeds.getPostsFeedUrl();
+feedUrl= viewFeeds.currentBlogUrl+"feeds/posts/default";
+if(extBlog=="1"&&extURL!="")
+{if (extURL.charAt(extURL.length - 1) == "/") extURL = extURL.substr(0, extURL.length - 1);
+if(extURL.substr(0, 7)!="http://") extURL="http://"+extURL;
+feedUrl= extURL+"/feeds/posts/default";}
+
+if(feedUrl==null){document.getElementById('instr').innerHTML="Please Turn on the Blog Feeds for the Gadget to Work"+document.getElementById('instr').innerHTML;return false;}
+if (mediaThumbsOnly||!showThumbs) feedUrl = feedUrl.replace("posts/default", "posts/summary");
+onePostFeed = feedUrl+"?&max-results="+numberOfPosts;
+
+
+
+var head = document.getElementsByTagName("head")[0] ||
+                document.documentElement;
+
+var script = document.createElement("script");
+        script.src = onePostFeed+"&alt=json-in-script&callback=getPosts";
+        script.charSet = "utf-8";
+        head.appendChild( script );
+
+
+
+
+
+
+}
+
+
+
+
+
+var viewFeeds = new google.Blog(initialize, window.name);
+
+
+
+
+
+//-->
+
+   </script>
+   
+
+</body>
+</html>
+                ]]>
+    </Content>
+</Module>
