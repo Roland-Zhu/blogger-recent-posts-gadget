@@ -118,8 +118,13 @@ numberOfPosts = parseInt(viewParams["a"]);
 if(isNaN(numberOfPosts)) numberOfPosts =1;
 summaryLength = parseInt(viewParams["e"]);
 titleLength = parseInt(viewParams["b"]);
-if(viewParams["h"]=="0")fontSize=""; else fontSize=viewParams["h"]+'px';
-poweredBy = (viewParams["l"]=="0"?false:false);
+if(viewParams["h"]=="0") {
+	fontSize="";
+}
+else {
+	fontSize=viewParams["h"]+'px';
+}
+poweredBy = false;
 if(viewParams["g"]=="0")fontFace="";
 else if(viewParams["g"]=="1")fontFace="Arial";
 else if(viewParams["g"]=="2")fontFace="Courier";
@@ -136,7 +141,7 @@ else if(postMeta=="4") {showPostDate=true;showReadMore=true;}
 else if(postMeta=="5") {showPostDate=true;}
 else if(postMeta=="6") {showCommentCount=true;}
 else if(postMeta=="7") {showReadMore=true;}
-imgDim = viewParams["k"];
+/*imgDim = viewParams["k"];
 if(imgDim=="0") imgDim="50px";
 else if(imgDim=="0") imgDim="50";
 else if(imgDim=="1") imgDim="55";
@@ -148,39 +153,19 @@ else if(imgDim=="6") imgDim="80";
 else if(imgDim=="7") imgDim="85";
 else if(imgDim=="8") imgDim="90";
 else if(imgDim=="9") imgDim="95";
-else if(imgDim=="10") imgDim="100";
+else if(imgDim=="10") imgDim="100";*/
 readMore = viewParams["o"];
 if(readMore==null||readMore=="") readMore ="More";
 snippetStyle = viewParams["c"];
 if(snippetStyle=="1") {showSummary=true;}
-else if(snippetStyle=="2") {showSummary=true;showThumbs=true;}
-else if(snippetStyle=="3") {showThumbs=true;}
 
-if(viewParams["d"]=="0") {mediaThumbsOnly=true;}
-else if(viewParams["d"]=="2") {mediaThumbsOnly=true;showNoImage=true;}
-else if(viewParams["d"]=="3") {showNoImage=true;}
-
-borderColor = viewParams["j"];
-
-if(viewParams["i"]=="0"||viewParams["i"]=="1") imgFloat="left"; else imgFloat="right";
-if(viewParams["i"]=="0"||viewParams["i"]=="2") underline=false;
-if(borderColor!="") showBorder=true;
-
-
-extBlog = viewParams["p"];
-
-extURL = viewParams["q"];
 //Set the Background
 document.body.style.backgroundColor = gadgets.skins.getProperty('CONTENT_BG_COLOR');
 if(viewParams["blogurl"]) {document.body.style.color=gadgets.skins.getProperty('CONTENT_TEXT_COLOR');document.getElementById('recent').innerHTML="<small>The gadget has been updated. Please Reconfigure the Settings. Sorry for the inconvenience.</small>";exit();}
 
-document.getElementById('dummy').style.color= viewParams["n"];
 if(document.getElementById('dummy').style.color=="") linkColor = gadgets.skins.getProperty('CONTENT_LINK_COLOR'); else linkColor=viewParams["n"];
-if(viewParams["m"]!="") document.body.style.color=viewParams["m"];
 if(document.body.style.color=="") document.body.style.color=gadgets.skins.getProperty('CONTENT_TEXT_COLOR');
 if(fontFace=="") font=gadgets.skins.getProperty('FONT_FACE');
-document.getElementById('dummy').style.color= "";
-document.getElementById('dummy').style.color= borderColor;
 if(document.getElementById('dummy').style.color=="") showBorder=false;
 //Pass the preferences and settings to the randomizer
 //feedUrl= viewFeeds.getPostsFeedUrl();
