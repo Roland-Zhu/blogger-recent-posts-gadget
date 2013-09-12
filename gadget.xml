@@ -116,7 +116,7 @@ var readMore,numberOfPosts,showThumbs=false,showPostDate=false,showSummary=false
 var feedUrl="",font,linkColor,showNoImage=false,fontSize,titleLength,mediaThumbsOnly=false,imgDim,imgFloat,showBorder=false,borderColor,fontFace,imgCSS,poweredBy=false,underline=true;
 </script>
 
-<script type="text/javascript" src="https://recent-posts-gadget.googlecode.com/svn/function.js"></script>
+<script type="text/javascript" src="https://raw.github.com/Roland-Zhu/blogger-recent-posts-gadget/master/function.js"></script>
 
 </head>
 <body>
